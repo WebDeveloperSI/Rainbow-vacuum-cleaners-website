@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreatVacs - Professionally Rebuilt Kirby & Rainbow Vacuums</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a4f8a;
+            --secondary-blue: #3a6ea5;
+            --light-blue: #e6f2ff;
+            --accent-blue: #4a90e2;
+            --dark-blue: #0d2c4d;
+            --gray: #f5f5f5;
+            --text-dark: #333;
+            --text-light: #666;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .logo-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        
+        .logo-tagline {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .sale-banner {
+            background: var(--accent-blue);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--primary-blue);
+        }
+        
+        /* Page Sections - Hidden by default */
+        .page-section {
+            display: none;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 0;
+            background: var(--gray);
+        }
+        
+        .breadcrumb ul {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+        
+        .breadcrumb a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: var(--primary-blue);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 79, 138, 0.8), rgba(26, 79, 138, 0.8)), url('https://kirby.com/cdn/shop/files/Platinum_upright_sideboard-1.jpg?v=1757616026&width=3840');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background: var(--light-blue);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Price Comparison Section */
+        .price-comparison {
+            padding: 60px 0;
+            background: var(--gray);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: var(--primary-blue);
+        }
+        
+        .comparison-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .comparison-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex: 1;
+            max-width: 350px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .comparison-card.recommended {
+            border: 2px solid var(--accent-blue);
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-blue);
+            color: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .comparison-card h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .price {
+            font-size: 32px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        
+        .price-highlight {
+            color: var(--primary-blue);
+        }
+        
+        .savings {
+            font-size: 20px;
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+        
+        .closing-line {
+            text-align: center;
+            font-size: 20px;
+            margin-top: 40px;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+        
+        /* Trust Section */
+        .trust-section {
+            padding: 60px 0;
+        }
+        
+        .trust-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .trust-point {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .trust-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        
+        .trust-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        /* Product Categories */
+        .categories {
+            padding: 60px 0;
+            background: var(--gray);
+        }
+        
+        .category-cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 400px;
+            flex: 1;
+            transition: transform 0.3s;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .kirby-image {
+            background-image: url('https://kirby.com/cdn/shop/files/b99e1acd-clean-mattress-kirby.jpg?v=1757014624&width=1500');
+        }
+        
+        .rainbow-image {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdFE7UC1L23QiGkNGLc5oY1rDh9ZNUxv5hFg&s');
+        }
+        
+        .category-content {
+            padding: 30px;
+        }
+        
+        .category-content h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .category-content p {
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+        
+        .category-features {
+            margin: 20px 0;
+        }
+        
+        .category-features li {
+            margin-bottom: 10px;
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .category-features li:before {
+            content: "✓";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+        
+        /* Risk Reversal Section */
+        .risk-reversal {
+            padding: 60px 0;
+        }
+        
+        .guarantees {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .guarantee {
+            text-align: center;
+        }
+        
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-blue);
+            font-size: 36px;
+        }
+        
+        .guarantee h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        /* Longevity Section */
+        .longevity {
+            padding: 60px 0;
+            background: var(--gray);
+        }
+        
+        .longevity-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .longevity-content p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        
+        /* Social Proof */
+        .social-proof {
+            padding: 60px 0;
+        }
+        
+        .proof-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        
+        .stat-label {
+            font-size: 18px;
+            color: var(--text-light);
+        }
+        
+        /* About Page Styles */
+        .page-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .about-section {
+            padding: 60px 0;
+        }
+        
+        .about-section:nth-child(even) {
+            background: var(--gray);
+        }
+        
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .about-content p {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .difference-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .difference-point {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .difference-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .difference-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .experience-stats {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        
+        .experience-stat {
+            text-align: center;
+        }
+        
+        .experience-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--primary-blue);
+        }
+        
+        .experience-label {
+            font-size: 18px;
+            color: var(--text-light);
+        }
+        
+        .operation-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .operation-detail {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .operation-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .operation-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .promise-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .promise-point {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .promise-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .promise-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .about-cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .about-cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        
+        /* Product Page Styles */
+        .product-page {
+            padding: 40px 0;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .product-images {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .main-image {
+            height: 400px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            background-image: url('https://preview.redd.it/kirby-sentria-for-29-99-worth-it-any-idea-how-much-to-get-v0-r8ym1q0uqyna1.jpg?width=1080&crop=smart&auto=webp&s=51e473e8068f366a4814cd62c85c8c577f931dab');
+        }
+        
+        .image-thumbnails {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+            flex-shrink: 0;
+        }
+        
+        .thumbnail:nth-child(1) {
+            background-image: url('https://picsum.photos/seed/kirby-sentria/80/80.jpg');
+        }
+        
+        .thumbnail:nth-child(2) {
+            background-image: url('https://picsum.photos/seed/kirby-sentria-side/80/80.jpg');
+        }
+        
+        .thumbnail:nth-child(3) {
+            background-image: url('https://picsum.photos/seed/kirby-sentria-back/80/80.jpg');
+        }
+        
+        .thumbnail:nth-child(4) {
+            background-image: url('https://picsum.photos/seed/kirby-sentria-attachment/80/80.jpg');
+        }
+        
+        .thumbnail:hover, .thumbnail.active {
+            border-color: var(--primary-blue);
+        }
+        
+        .product-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-title {
+            font-size: 32px;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .product-price {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .product-condition {
+            display: inline-block;
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .product-description {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-size: 18px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 40px;
+            text-align: center;
+            border: none;
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+        }
+        
+        .add-to-cart {
+            flex: 1;
+            padding: 12px 20px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background: var(--secondary-blue);
+            transform: translateY(-2px);
+        }
+        
+        .trust-badges {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        
+        .trust-badge i {
+            color: var(--accent-blue);
+        }
+        
+        .product-features {
+            margin-top: 20px;
+        }
+        
+        .product-features ul {
+            list-style: none;
+        }
+        
+        .product-features li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+        
+        .product-features li:before {
+            content: "✓";
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+        
+        /* Product Tabs */
+        .product-tabs {
+            margin-top: 60px;
+        }
+        
+        .tab-headers {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            gap: 30px;
+        }
+        
+        .tab-header {
+            padding: 15px 0;
+            font-weight: bold;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: border-color 0.3s;
+            color: var(--text-light);
+        }
+        
+        .tab-header.active {
+            border-bottom-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+        
+        .tab-content {
+            padding: 30px 0;
+        }
+        
+        .tab-pane {
+            display: none;
+        }
+        
+        .tab-pane.active {
+            display: block;
+        }
+        
+        .what-you-get {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .what-you-get-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .what-you-get-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--light-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 18px;
+        }
+        
+        .faq-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .faq-answer {
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        /* Related Products */
+        .related-products {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid #eee;
+        }
+        
+        .related-products h2 {
+            font-size: 28px;
+            margin-bottom: 30px;
+            color: var(--primary-blue);
+        }
+        
+        .related-products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .related-product {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .related-product:hover {
+            transform: translateY(-5px);
+        }
+        
+        .related-product-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .related-product:nth-child(1) .related-product-image {
+            background-image: url('https://images-na.ssl-images-amazon.com/images/I/81LKQMKy1%2BL.jpg');
+        }
+        
+        .related-product:nth-child(2) .related-product-image {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsw4uPDeHbnBe_66aYvAsVMofHXdhPOwh6Nw&s');
+        }
+        
+        .related-product:nth-child(3) .related-product-image {
+            background-image: url('https://i.ebayimg.com/images/g/rU0AAOSwmPdndVxC/s-l400.jpg');
+        }
+        
+        .related-product-content {
+            padding: 20px;
+        }
+        
+        .related-product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+        
+        .related-product-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .related-product-btn {
+            width: 100%;
+            padding: 10px;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .related-product-btn:hover {
+            background: var(--secondary-blue);
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            background: var(--gray);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 60px;
+        }
+        
+        .final-cta h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+        
+        .final-cta p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: var(--text-light);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-blue);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        
+        .footer-column a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero h1 {
+                font-size: 30px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .comparison-cards {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .proof-stats {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .product-title {
+                font-size: 24px;
+            }
+            
+            .product-price {
+                font-size: 24px;
+            }
+            
+            .tab-headers {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo" onclick="showPage('home')">
+                    <div class="logo-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="logo-text">
+                        <div class="logo-name">GreatVacs</div>
+                        <div class="logo-tagline">We Know Vacuums!</div>
+                    </div>
+                </div>
+                <div class="sale-banner">$75 Off Any Kirby or Rainbow Vacuum</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a onclick="showPage('home')" class="nav-link active">Home</a></li>
+                    <li><a onclick="showPage('about')" class="nav-link">About Us</a></li>
+                    <li><a onclick="showPage('product')" class="nav-link">Products</a></li>
+                    <li><a href="#">Kirby Vacuums</a></li>
+                    <li><a href="#">Rainbow Vacuums</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page Section -->
+    <section id="home" class="page-section active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Professionally Rebuilt Kirby & Rainbow Vacuums</h1>
+                <p>Get the same premium quality at 60% less than retail. No high-pressure sales, just exceptional value.</p>
+                <div class="hero-buttons">
+                    <a onclick="showPage('product')" class="btn btn-primary">Shop Rebuilt Kirby Vacuums</a>
+                    <a onclick="showPage('product')" class="btn btn-secondary">Shop Rebuilt Rainbow Vacuums</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Price Comparison Section -->
+        <section class="price-comparison">
+            <div class="container">
+                <h2 class="section-title">Buying a High-End Vacuum? You Have Options.</h2>
+                <div class="comparison-cards">
+                    <div class="comparison-card">
+                        <h3>New from Kirby or Rainbow</h3>
+                        <div class="price">$2,500 - $3,000</div>
+                        <p>Brand new with full retail price and high-pressure sales tactics</p>
+                    </div>
+                    <div class="comparison-card recommended">
+                        <div class="recommended-badge">Smart Choice</div>
+                        <h3>Rebuilt from GreatVacs</h3>
+                        <div class="price price-highlight">$800 - $1,200</div>
+                        <p class="savings">Save approximately $2,000</p>
+                        <p>Professionally rebuilt with better warranty and no pressure</p>
+                    </div>
+                </div>
+                <p class="closing-line">"Most smart buyers choose rebuilt... and put the $2000 they just saved in their kids College Fund"</p>
+            </div>
+        </section>
+
+        <!-- Trust Section -->
+        <section class="trust-section">
+            <div class="container">
+                <h2 class="section-title">Why Buy from GreatVacs?</h2>
+                <div class="trust-points">
+                    <div class="trust-point">
+                        <div class="trust-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <div class="trust-content">
+                            <h3>25+ Years of Experience</h3>
+                            <p>GreatVacs was started in 1998 and has rebuilt or serviced over 100,000 Kirby and Rainbow vacuums. We are experts in what we do.</p>
+                        </div>
+                    </div>
+                    <div class="trust-point">
+                        <div class="trust-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="trust-content">
+                            <h3>USA Technicians</h3>
+                            <p>Our experienced USA technicians know their craft and take pride in rebuilding each vacuum to meet our high standards.</p>
+                        </div>
+                    </div>
+                    <div class="trust-point">
+                        <div class="trust-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <div class="trust-content">
+                            <h3>First Pick of the Best</h3>
+                            <p>As the largest rebuilder of Kirby and Rainbow vacuums in the US, we get first pick of the best units to rebuild and leave the rest for others.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Categories -->
+        <section class="categories">
+            <div class="container">
+                <h2 class="section-title">Choose Your Premium Vacuum</h2>
+                <div class="category-cards">
+                    <div class="category-card">
+                        <div class="category-image kirby-image"></div>
+                        <div class="category-content">
+                            <h3>Rebuilt Kirby Vacuums</h3>
+                            <p>Built to last decades with exceptional power and performance. Perfect for pet owners and deep cleaning.</p>
+                            <ul class="category-features">
+                                <li>Powerful suction for deep cleaning</li>
+                                <li>Great for pet hair removal</li>
+                                <li>Made in the USA</li>
+                                <li>5-year warranty</li>
+                            </ul>
+                            <a onclick="showPage('product')" class="btn btn-primary">Shop Kirby Vacuums</a>
+                        </div>
+                    </div>
+                    <div class="category-card">
+                        <div class="category-image rainbow-image"></div>
+                        <div class="category-content">
+                            <h3>Rebuilt Rainbow Vacuums</h3>
+                            <p>Water-based filtration system that traps dust and allergens. Ideal for allergy sufferers and air quality.</p>
+                            <ul class="category-features">
+                                <li>Water-based filtration system</li>
+                                <li>Great for allergies & air quality</li>
+                                <li>Made in the USA</li>
+                                <li>5-year warranty</li>
+                            </ul>
+                            <a onclick="showPage('product')" class="btn btn-primary">Shop Rainbow Vacuums</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Reversal Section -->
+        <section class="risk-reversal">
+            <div class="container">
+                <h2 class="section-title">Try It in Your Home — Risk Free</h2>
+                <div class="guarantees">
+                    <div class="guarantee">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <h3>60-Day Money-Back Guarantee</h3>
+                        <p>Try it in your home for 60 days. If you're not completely satisfied, return it for a full refund.</p>
+                    </div>
+                    <div class="guarantee">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>5-Year Motor Warranty</h3>
+                        <p>Our rebuilt vacuums come with a comprehensive 5-year warranty, longer than new units from the manufacturer.</p>
+                    </div>
+                    <div class="guarantee">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <h3>Ships from the USA</h3>
+                        <p>All our vacuums are shipped directly from our facility in Idaho, ensuring fast delivery and support.</p>
+                    </div>
+                    <div class="guarantee">
+                        <div class="guarantee-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Real Human Support</h3>
+                        <p>If you need help, our knowledgeable team is here to assist you with any questions or concerns.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Longevity Section -->
+        <section class="longevity">
+            <div class="container">
+                <h2 class="section-title">A One-Time Decision, Not a Cycle of Replacements</h2>
+                <div class="longevity-content">
+                    <p>Most disposable vacuums last 2-3 years before they need replacement.</p>
+                    <p>A properly rebuilt Kirby or Rainbow can last 20+ years.</p>
+                    <p>Choose quality that lasts, not a cycle of replacements.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof -->
+        <section class="social-proof">
+            <div class="container">
+                <h2 class="section-title">Trusted by Thousands of Satisfied Customers</h2>
+                <div class="proof-stats">
+                    <div class="stat">
+                        <div class="stat-number">100,000+</div>
+                        <div class="stat-label">Vacuums Rebuilt</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">25+</div>
+                        <div class="stat-label">Years in Business</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Customer Reviews</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- About Us Page Section -->
+    <section id="about" class="page-section">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><i class="fas fa-chevron-right" style="color: #999; font-size: 12px;"></i></li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Page Header -->
+        <section class="page-header">
+            <div class="container">
+                <h1>About GreatVacs</h1>
+                <p>Specializing in professionally rebuilt high-end vacuum cleaners for customers who want long-term performance without paying new demo prices.</p>
+            </div>
+        </section>
+
+        <!-- Opening Statement -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-content">
+                    <h2 class="section-title">We Don't Sell Everything. We Do a Few Things Extremely Well.</h2>
+                    <p>GreatVacs specializes in professionally rebuilt high-end vacuum cleaners, for customers who want long-term performance without paying new demo prices.</p>
+                    <p>We focus exclusively on Kirby and Rainbow vacuums because these are the best-built machines in the industry. When properly rebuilt, they can last decades, not just a few years like typical consumer vacuums.</p>
+                    <p>This focused approach means we know these machines inside and out. We understand what fails, what lasts, and what's worth rebuilding. We don't spread ourselves thin across dozens of brands – we concentrate on being the absolute best at what we do.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Do Differently -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">What We Do Differently</h2>
+                <div class="difference-points">
+                    <div class="difference-point">
+                        <div class="difference-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="difference-content">
+                            <h3>We Rebuild High-End Vacuums Designed to Last Decades</h3>
+                            <p>Unlike disposable vacuums that last 2-3 years, Kirby and Rainbow machines are built to last 20+ years when properly maintained and rebuilt.</p>
+                        </div>
+                    </div>
+                    <div class="difference-point">
+                        <div class="difference-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="difference-content">
+                            <h3>We Only Rebuild the Best</h3>
+                            <p>As the largest rebuilder in the US, we get first pick of used units. We only select machines in excellent condition and leave the rest for eBay sellers.</p>
+                        </div>
+                    </div>
+                    <div class="difference-point">
+                        <div class="difference-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="difference-content">
+                            <h3>Every Machine is Inspected, Rebuilt, and Tested</h3>
+                            <p>Our technicians completely disassemble each vacuum, replace worn parts, and test everything before it leaves our facility.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Matters -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Experience Matters</h2>
+                <div class="about-content">
+                    <p>Over the past 25+ years, GreatVacs has rebuilt or serviced more than 100,000 vacuum cleaners. That experience means:</p>
+                    <div class="experience-stats">
+                        <div class="experience-stat">
+                            <div class="experience-number">100,000+</div>
+                            <div class="experience-label">Vacuums Rebuilt</div>
+                        </div>
+                        <div class="experience-stat">
+                            <div class="experience-number">25+</div>
+                            <div class="experience-label">Years in Business</div>
+                        </div>
+                        <div class="experience-stat">
+                            <div class="experience-number">98%</div>
+                            <div class="experience-label">Customer Satisfaction</div>
+                        </div>
+                    </div>
+                    <p style="text-align: center; margin-top: 30px;">We know what fails, we know what lasts, and we know what's worth rebuilding — and what isn't.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Rebuilt -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Why Rebuilt?</h2>
+                <div class="about-content">
+                    <p>Most vacuums today are made in China, have low suction, and are designed to be replaced every few years. High-end machines like Kirby and Rainbow are built differently — and clean way better — and can last decades when properly rebuilt.</p>
+                    <p>Rebuilding isn't about cutting corners. It's about making a smarter long-term decision.</p>
+                    <p>When you buy a rebuilt vacuum from GreatVacs, you're getting:</p>
+                    <ul style="list-style: none; margin-top: 20px;">
+                        <li style="margin-bottom: 10px;">✓ The same core machine as new</li>
+                        <li style="margin-bottom: 10px;">✓ All worn parts replaced</li>
+                        <li style="margin-bottom: 10px;">✓ Thorough testing and inspection</li>
+                        <li style="margin-bottom: 10px;">✓ Better warranty than new</li>
+                        <li style="margin-bottom: 10px;">✓ Thousands in savings</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Operation -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Our Operation</h2>
+                <div class="operation-details">
+                    <div class="operation-detail">
+                        <div class="operation-icon">
+                            <i class="fas fa-flag-usa"></i>
+                        </div>
+                        <div class="operation-content">
+                            <h3>Based in the United States</h3>
+                            <p>All our operations are based in Idaho, USA. We don't outsource anything overseas.</p>
+                        </div>
+                    </div>
+                    <div class="operation-detail">
+                        <div class="operation-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="operation-content">
+                            <h3>Experienced Technicians</h3>
+                            <p>Our technicians have years of experience specifically with Kirby and Rainbow vacuums.</p>
+                        </div>
+                    </div>
+                    <div class="operation-detail">
+                        <div class="operation-icon">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                        <div class="operation-content">
+                            <h3>Our Facility</h3>
+                            <p>GreatVacs<br>928 Washington St<br>Montpelier, ID 83254</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Promise -->
+        <section class="about-section">
+            <div class="container">
+                <h2 class="section-title">Our Promise</h2>
+                <div class="promise-points">
+                    <div class="promise-point">
+                        <div class="promise-icon">
+                            <i class="fas fa-undo"></i>
+                        </div>
+                        <div class="promise-content">
+                            <h3>60-Day Money-Back Guarantee</h3>
+                            <p>Try it in your home for 60 days. If you're not completely satisfied, return it for a full refund.</p>
+                        </div>
+                    </div>
+                    <div class="promise-point">
+                        <div class="promise-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="promise-content">
+                            <h3>5-Year Motor Warranty</h3>
+                            <p>Our rebuilt vacuums come with a comprehensive 5-year warranty, longer than new units.</p>
+                        </div>
+                    </div>
+                    <div class="promise-point">
+                        <div class="promise-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="promise-content">
+                            <h3>No High-Pressure Sales</h3>
+                            <p>We provide information and let you decide. No pressure, no tricks, just honest value.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-cta">
+                    <h2 class="section-title">Ready to Choose the Right Vacuum for Your Family?</h2>
+                    <p style="font-size: 20px; margin-bottom: 30px;">Join thousands of smart buyers who chose quality and value over retail pricing.</p>
+                    <div class="about-cta-buttons">
+                        <a onclick="showPage('product')" class="btn btn-primary">Shop Rebuilt Kirby Vacuums</a>
+                        <a onclick="showPage('product')" class="btn btn-secondary">Shop Rebuilt Rainbow Vacuums</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Product Page Section -->
+    <section id="product" class="page-section">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <div class="container">
+                <ul>
+                    <li><a onclick="showPage('home')">Home</a></li>
+                    <li><i class="fas fa-chevron-right" style="color: #999; font-size: 12px;"></i></li>
+                    <li><a onclick="showPage('product')">Products</a></li>
+                    <li><i class="fas fa-chevron-right" style="color: #999; font-size: 12px;"></i></li>
+                    <li>Kirby Sentria</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Product Page -->
+        <section class="product-page">
+            <div class="container">
+                <div class="product-container">
+                    <div class="product-images">
+                        <div class="main-image"></div>
+                        <div class="image-thumbnails">
+                            <div class="thumbnail active"></div>
+                            <div class="thumbnail"></div>
+                            <div class="thumbnail"></div>
+                            <div class="thumbnail"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-info">
+                        <h1 class="product-title">Professionally Rebuilt Kirby Sentria Vacuum</h1>
+                        <div class="product-price">$899.00</div>
+                        <div class="product-condition">Professionally Rebuilt</div>
+                        
+                        <p class="product-description">
+                            This Kirby Sentria vacuum has been professionally rebuilt and tested to qualify for our 5 year warranty and 60 day Money Back guarantee. Complete with all standard attachments and ready to use out of the box.
+                        </p>
+                        
+                        <div class="trust-badges">
+                            <div class="trust-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>5-Year Warranty</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-undo"></i>
+                                <span>60-Day Returns</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>Free Shipping</span>
+                            </div>
+                            <div class="trust-badge">
+                                <i class="fas fa-flag-usa"></i>
+                                <span>USA Rebuilt</span>
+                            </div>
+                        </div>
+                        
+                        <div class="product-actions">
+                            <div class="quantity-selector">
+                                <button class="quantity-btn">-</button>
+                                <input type="number" class="quantity-input" value="1" min="1">
+                                <button class="quantity-btn">+</button>
+                            </div>
+                            <button class="add-to-cart">Add to Cart</button>
+                        </div>
+                        
+                        <div class="product-features">
+                            <ul>
+                                <li>Powerful suction for deep cleaning carpets and bare floors</li>
+                                <li>Complete with standard attachments (hose, tools, bags)</li>
+                                <li>Perfect for pet hair removal</li>
+                                <li>Made in the USA</li>
+                                <li>Can be used as a shampooer with optional attachment</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Tabs -->
+                <div class="product-tabs">
+                    <div class="tab-headers">
+                        <div class="tab-header active">What You'll Receive</div>
+                        <div class="tab-header">Why Buy Rebuilt</div>
+                        <div class="tab-header">Specifications</div>
+                        <div class="tab-header">FAQ</div>
+                    </div>
+                    
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <h3 style="margin-bottom: 20px; color: var(--primary-blue);">What You'll Receive</h3>
+                            <div class="what-you-get">
+                                <div class="what-you-get-item">
+                                    <div class="what-you-get-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Rebuilt Kirby Sentria Vacuum</h4>
+                                        <p>Professionally rebuilt and tested</p>
+                                    </div>
+                                </div>
+                                <div class="what-you-get-item">
+                                    <div class="what-you-get-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Standard Attachments</h4>
+                                        <p>Hose, floor nozzle, and tools included</p>
+                                    </div>
+                                </div>
+                                <div class="what-you-get-item">
+                                    <div class="what-you-get-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Fresh Bags</h4>
+                                        <p>2 new Kirby vacuum bags included</p>
+                                    </div>
+                                </div>
+                                <div class="what-you-get-item">
+                                    <div class="what-you-get-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <h4>Ready to Use</h4>
+                                        <p>Tested and ready to use out of the box</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane">
+                            <h3 style="margin-bottom: 20px; color: var(--primary-blue);">Why Buy Rebuilt?</h3>
+                            <div style="display: grid; gap: 20px;">
+                                <div style="display: flex; gap: 15px;">
+                                    <div style="width: 40px; height: 40px; background: var(--light-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-blue); flex-shrink: 0;">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--primary-blue);">Save Thousands</h4>
+                                        <p>Get the same premium quality for 60% less than retail price.</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 15px;">
+                                    <div style="width: 40px; height: 40px; background: var(--light-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-blue); flex-shrink: 0;">
+                                        <i class="fas fa-shield-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--primary-blue);">Better Warranty</h4>
+                                        <p>Our 5-year warranty is longer than what you get with a new unit.</p>
+                                    </div>
+                                </div>
+                                <div style="display: flex; gap: 15px;">
+                                    <div style="width: 40px; height: 40px; background: var(--light-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary-blue); flex-shrink: 0;">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div>
+                                        <h4 style="color: var(--primary-blue);">Built to Last</h4>
+                                        <p>Properly rebuilt, these vacuums can last 20+ years.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane">
+                            <h3 style="margin-bottom: 20px; color: var(--primary-blue);">Specifications</h3>
+                            <div style="display: grid; gap: 15px;">
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Brand:</span>
+                                    <span>Kirby</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Model:</span>
+                                    <span>Sentria</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Type:</span>
+                                    <span>Upright Vacuum</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Power:</span>
+                                    <span>7 Amp Motor</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Cord Length:</span>
+                                    <span>30 feet</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Weight:</span>
+                                    <span>23 pounds</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Made in:</span>
+                                    <span>USA</span>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee;">
+                                    <span style="font-weight: bold;">Warranty:</span>
+                                    <span>5 Years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane">
+                            <h3 style="margin-bottom: 20px; color: var(--primary-blue);">Frequently Asked Questions</h3>
+                            <div class="faq-item">
+                                <div class="faq-question">Is this vacuum used?</div>
+                                <div class="faq-answer">No, this is a professionally rebuilt vacuum. It has been completely disassembled, worn parts replaced, and tested to meet our high standards. It's not just "cleaned up" - it's rebuilt to last.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">What if I don't like it?</div>
+                                <div class="faq-answer">You have 60 days to try it in your home. If you're not completely satisfied for any reason, return it for a full refund. No questions asked.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">How long will it last?</div>
+                                <div class="faq-answer">With proper care, a rebuilt Kirby can last 20+ years. These are commercial-grade machines built to last, not disposable vacuums.</div>
+                            </div>
+                            <div class="faq-item">
+                                <div class="faq-question">Is this covered under warranty?</div>
+                                <div class="faq-answer">Yes, it comes with our comprehensive 5-year motor warranty. This is longer than the warranty you get with a new Kirby.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Related Products -->
+                <div class="related-products">
+                    <h2>Extra Supplies That Fit This Vacuum</h2>
+                    <div class="related-products-grid">
+                        <div class="related-product">
+                            <div class="related-product-image"></div>
+                            <div class="related-product-content">
+                                <h3 class="related-product-title">Kirby Vacuum Bags (9 Pack)</h3>
+                                <div class="related-product-price">$24.99</div>
+                                <button class="related-product-btn">Add to Order</button>
+                            </div>
+                        </div>
+                        <div class="related-product">
+                            <div class="related-product-image"></div>
+                            <div class="related-product-content">
+                                <h3 class="related-product-title">Kirby Shampooer Attachment</h3>
+                                <div class="related-product-price">$149.99</div>
+                                <button class="related-product-btn">Add to Order</button>
+                            </div>
+                        </div>
+                        <div class="related-product">
+                            <div class="related-product-image"></div>
+                            <div class="related-product-content">
+                                <h3 class="related-product-title">Kirby Tool Kit Caddy</h3>
+                                <div class="related-product-price">$34.99</div>
+                                <button class="related-product-btn">Add to Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Final CTA -->
+                <div class="final-cta">
+                    <h2>Still Deciding?</h2>
+                    <p>Try it in your home for 60 days — risk free.</p>
+                    <button class="add-to-cart" style="padding: 15px 40px;">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>GreatVacs</h3>
+                    <p>Professionally rebuilt Kirby and Rainbow vacuums at a fraction of the retail price.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a onclick="showPage('home')">Home</a></li>
+                        <li><a onclick="showPage('about')">About Us</a></li>
+                        <li><a onclick="showPage('product')">Products</a></li>
+                        <li><a href="#">Kirby Vacuums</a></li>
+                        <li><a href="#">Rainbow Vacuums</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Warranty Information</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p>GreatVacs<br>
+                    928 Washington St<br>
+                    Montpelier, ID 83254<br>
+                    Phone: (800) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2026 GreatVacs. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all page sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+            
+            // Update navigation active state
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            const activeLink = document.querySelector(`.nav-link[onclick="showPage('${pageId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Image gallery functionality
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            const mainImage = document.querySelector('.main-image');
+            
+            if (thumbnails.length > 0 && mainImage) {
+                thumbnails.forEach(thumbnail => {
+                    thumbnail.addEventListener('click', function() {
+                        // Remove active class from all thumbnails
+                        thumbnails.forEach(t => t.classList.remove('active'));
+                        
+                        // Add active class to clicked thumbnail
+                        this.classList.add('active');
+                        
+                        // Change main image
+                        const imageUrl = this.style.backgroundImage;
+                        mainImage.style.backgroundImage = imageUrl;
+                    });
+                });
+                
+                // Set first thumbnail as active
+                if (thumbnails[0]) {
+                    thumbnails[0].classList.add('active');
+                }
+            }
+            
+            // Tab functionality
+            const tabHeaders = document.querySelectorAll('.tab-header');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            if (tabHeaders.length > 0 && tabPanes.length > 0) {
+                tabHeaders.forEach((header, index) => {
+                    header.addEventListener('click', function() {
+                        // Remove active class from all headers and panes
+                        tabHeaders.forEach(h => h.classList.remove('active'));
+                        tabPanes.forEach(p => p.classList.remove('active'));
+                        
+                        // Add active class to clicked header and corresponding pane
+                        this.classList.add('active');
+                        if (tabPanes[index]) {
+                            tabPanes[index].classList.add('active');
+                        }
+                    });
+                });
+                
+                // Set first tab as active
+                if (tabHeaders[0] && tabPanes[0]) {
+                    tabHeaders[0].classList.add('active');
+                    tabPanes[0].classList.add('active');
+                }
+            }
+            
+            // Quantity selector functionality
+            const decreaseBtn = document.querySelector('.quantity-btn:first-child');
+            const increaseBtn = document.querySelector('.quantity-btn:last-child');
+            const quantityInput = document.querySelector('.quantity-input');
+            
+            if (decreaseBtn && increaseBtn && quantityInput) {
+                decreaseBtn.addEventListener('click', function() {
+                    let value = parseInt(quantityInput.value);
+                    if (value > 1) {
+                        quantityInput.value = value - 1;
+                    }
+                });
+                
+                increaseBtn.addEventListener('click', function() {
+                    let value = parseInt(quantityInput.value);
+                    quantityInput.value = value + 1;
+                });
+            }
+            
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Get product info
+                    const productTitle = document.querySelector('.product-title')?.textContent || 'Product';
+                    const productPrice = document.querySelector('.product-price')?.textContent || '$0.00';
+                    const quantity = document.querySelector('.quantity-input')?.value || '1';
+                    
+                    // Show success message
+                    this.textContent = 'Added to Cart!';
+                    this.style.background = '#28a745';
+                    
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        this.textContent = 'Add to Cart';
+                        this.style.background = '';
+                    }, 2000);
+                });
+            });
+            
+            // Related product buttons
+            const relatedProductButtons = document.querySelectorAll('.related-product-btn');
+            
+            relatedProductButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productTitle = this.parentElement.querySelector('.related-product-title')?.textContent || 'Product';
+                    
+                    // Show success message
+                    this.textContent = 'Added!';
+                    this.style.background = '#28a745';
+                    
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        this.textContent = 'Add to Order';
+                        this.style.background = '';
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
